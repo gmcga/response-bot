@@ -3,6 +3,7 @@ import discord
 from discord.ext import commands
 import requests
 import json
+import platform
 
  # get random quote function
 def get_quote():
@@ -45,7 +46,14 @@ class Misc(commands.Cog):
         quote = get_quote()
         await ctx.send(quote)
 
-
+    # basic stats command
+    @commands.command(brief = 'Displays some bot stats')
+    async def stats(self, ctx):
+        py_version = platform.python_version()
+        discord_py_version = discord.__version__
+        server_count = len(self.bot.guilds)
+        member_count = len(set(self.bot.get_all_members()))
+        await ctx.send(f"I am in {server_count} guilds with a total of {member_count} members. \nPython version: {py_version} \nDiscord.py version: {discord_py_version}")
 
 def setup(bot):
     bot.add_cog(Misc(bot))
