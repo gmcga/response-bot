@@ -1,4 +1,4 @@
-# ResponseBot0.2
+# Response Bot
 from importlib.util import decode_source
 import discord 
 from discord.ext import commands
@@ -12,6 +12,7 @@ import math
 import logging
 import sys, traceback
 
+initial_extensions = ['cogs.Math']
 
 bot = commands.Bot(command_prefix='!', case_insensitive=True, activity = discord.Game(name = "!help for commands list!"))
 load_dotenv()
@@ -29,10 +30,6 @@ def get_dish():
     response = requests.get("https://random-data-api.com/api/food/random_food")
     dish = response.json()["dish"] 
     return(dish) 
-
-@bot.event
-async def on_ready():
-    print(f'\nLogged in as: {bot.user.name} :: {bot.user.id} :: Current prefix: "!"\n-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-\n')
        
 @bot.command(aliases = ['hi'], brief = 'Says hello!', description = 'Says hello!')
 async def hello(ctx):
@@ -63,175 +60,21 @@ async def inspire(ctx):
     quote = get_quote()
     await ctx.send(quote)
 
-@bot.command(brief = 'Divides two given numbers', description = 'Input = ')
-async def div(ctx, num1, num2):
-    try:
-        num1 = float(num1)
-    except:
-        await ctx.send(f"Can't convert to float: '{num1}'")
-        return
+if __name__ == '__main__':
+    for extension in initial_extensions:
+        try:
+            bot.load_extension(extension)
+        except Exception as e:
+            print(f'Failed to load extension {extension}.', file=sys.stderr)
+            traceback.print_exc()
 
-    try:
-        num2 = float(num2)
-    except:
-        await ctx.send(f"Can't convert to float: '{num2}'")
-        return
-    
-    if num2 == 0:
-        await ctx.send("Can't divide by zero")
-        return
-        
-    answer = num1 / num2
+@bot.event
+async def on_ready():
+    print(f'\nLogged in as: {bot.user.name} :: {bot.user.id} :: Current prefix: "!"\n-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-\n')
 
-    ans_em = discord.Embed(title = 'Division', description = f'Question: {num1} / {num2}\n\nAnswer: {answer}', colour = discord.Colour.from_rgb(252, 0, 252))
-  
-    await ctx.send(embed=ans_em)
 
-@div.error
-async def div_error(ctx, error):
-    if isinstance(error, commands.MissingRequiredArgument):
-        await ctx.send('It needs two values')
 
-@bot.command(brief = 'Adds two given numbers', description = 'Input: ')
-async def add(ctx, num1, num2):
-    try: 
-        num1 = float(num1)
-    except:
-        await ctx.send(f"Can't convert to float: '{num1}'")    
-        return
-    
-    try: 
-        num2 = float(num2)
-    except:
-        await ctx.send(f"Can't convert to float: '{num2}'")    
-        return
-    
-    answer = num1 + num2
+bot.run(TOKEN) 
 
-    ans_em = discord.Embed(title='Addition', description = f'Question: {num1} + {num2}\n\nAnswer: {answer}', colour = discord.Colour.from_rgb(252, 252, 0))
-    
-    await ctx.send(embed=ans_em)
 
-@bot.command(brief = 'Subtracts two given numbers', description = 'Input: ')
-async def sub(ctx, num1, num2):
-    try: 
-        num1 = float(num1)
-    except:
-        await ctx.send(f"Can't convert to float: '{num1}'")    
-        return
-    
-    try: 
-        num2 = float(num2)
-    except:
-        await ctx.send(f"Can't convert to float: '{num2}'")    
-        return
-    
-    answer = num1 - num2
 
-    ans_em = discord.Embed(title='Subtraction', description = f'Question: {num1} - {num2}\n\nAnswer: {answer}', colour = discord.Colour.from_rgb(0, 252, 252))
-    
-    await ctx.send(embed=ans_em)
-
-@bot.command(brief = 'Multiplies two given numbers', description = 'Input: ')
-async def mul(ctx, num1, num2):
-    try: 
-        num1 = float(num1)
-    except:
-        await ctx.send(f"Can't convert to float: '{num1}'")    
-        return
-    
-    try: 
-        num2 = float(num2)
-    except:
-        await ctx.send(f"Can't convert to float: '{num2}'")    
-        return
-    
-    answer = num1 * num2
-
-    ans_em = discord.Embed(title='Multiplication', description = f'Question: {num1} x {num2}\n\nAnswer: {answer}', colour = discord.Colour.from_rgb(60, 220, 28))
-    
-    await ctx.send(embed=ans_em)
-
-@bot.command(brief = 'Finds the square root of a number', description = 'Input: ')
-async def root(ctx, num):
-    try: 
-        num = float(num)
-    except: 
-        await ctx.send(f"Can't convert to float: '{num}'")
-        return
-    
-    if num < 0: 
-        await ctx.send(f"Number is not above zero: '{num}'")
-        return
-
-    answer = math.sqrt(num)
-
-    ans_em = discord.Embed(title='Square Root', description = f'Question: sqrt({num})\n\nAnswer: {answer}', colour = discord.Colour.from_rgb(255, 149, 9))
-
-    await ctx.send(embed=ans_em)
-
-@bot.command(brief = 'Squares a number', description = 'Input: ')
-async def squ(ctx, num):
-    try: 
-        num = float(num)
-    except: 
-        await ctx.send(f"Can't convert to float: '{num}'")
-        return
-
-    answer = num * num
-
-    ans_em = discord.Embed(title='Square', description = f'Question: {num}^2\n\nAnswer: {answer}', colour = discord.Colour.from_rgb(153, 0, 76))
-
-    await ctx.send(embed=ans_em)
-
-@bot.command(brief = 'Finds the factorial of a number', description = 'Input: ')
-async def fact(ctx, num):
-    try: 
-        num = float(num)
-    except: 
-        await ctx.send(f"Can't convert to float: '{num}'")
-        return
-    
-    if num < 0:
-        await ctx.send(f"Number is not greater than zero: '{num}'")
-        return
-    
-    try: 
-        math.factorial(num)
-    except: 
-        await ctx.send(f"Number is not an integer: '{num}'")
-        return
-
-    answer = math.factorial(num)
-
-    ans_em = discord.Embed(title='Factorial', description = f'Question: {num}!\n\nAnswer: {answer}', colour = discord.Colour.from_rgb(252, 252, 252))
-
-    await ctx.send(embed=ans_em)
-
-@bot.command(brief = 'Exponentiates a number', description = 'Input: ')
-async def expo(ctx, num1, num2): 
-    try:
-        num1 = float(num1)
-    except: 
-        await ctx.send(f"Can't convert to float: '{num1}'")    
-        return
-
-    try:
-        num2 = float(num2)
-    except: 
-        await ctx.send(f"Can't convert to float: '{num2}'")    
-        return 
-
-    try: 
-        pow(num1, num2)
-    except: 
-        await ctx.send(f"Result too large (overflow error): '{num1}^{num2}'")
-        return
-
-    answer = pow(num1, num2)
-
-    ans_em = discord.Embed(title='Exponent', description = f'Question: {num1}^{num2}\n\nAnswer: {answer}', colour = discord.Colour.from_rgb(100, 100, 100))
-
-    await ctx.send(embed=ans_em)
-
-bot.run(TOKEN)
