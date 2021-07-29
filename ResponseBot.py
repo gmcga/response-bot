@@ -15,7 +15,6 @@ initial_extensions = [
                     'cogs.Misc'
                      ]
 
-
 bot = commands.Bot(command_prefix='!', case_insensitive=True, activity = discord.Game(name = "!help for commands list!"))
 load_dotenv()
 TOKEN = os.getenv("TOKEN")

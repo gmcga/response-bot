@@ -21,13 +21,10 @@ class Misc(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-   
-
     # hello command 
     @commands.command(aliases = ['hi'], brief = 'Says hello!', description = 'Says hello!')
     async def hello(self, ctx):
         await ctx.send(f"Hello {ctx.author.mention}!")
-
 
     # deletes user's command and sends the text provided
     @commands.command(brief = "Deletes your command and sends the text provided.", description = "Makes it appear as if the bot sent the text you provided without a prompt. ")
@@ -47,6 +44,7 @@ class Misc(commands.Cog):
     async def inspire(self, ctx):
         quote = get_quote()
         await ctx.send(quote)
+
 
 
 def setup(bot):
