@@ -234,7 +234,4 @@ async def expo(ctx, num1, num2):
 
     await ctx.send(embed=ans_em)
 
-bot.run(TOKEN) 
-
-
-
+bot.run(TOKEN)
