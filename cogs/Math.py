@@ -133,7 +133,7 @@ class Math(commands.Cog):
         await ctx.send(embed=ans_em)
 
     @commands.command(brief = 'Finds the factorial of a number', description = 'Input: ')
-    async def fact(ctx, num):
+    async def fact(self, ctx, num):
         try: 
             num = float(num)
         except: 
@@ -186,3 +186,4 @@ class Math(commands.Cog):
 
 def setup(bot):
     bot.add_cog(Math(bot))
+    
