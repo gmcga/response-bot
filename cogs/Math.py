@@ -1,7 +1,6 @@
-#Clone for responsebot math cog
+# Cog for simple math commands
 import discord
 from discord.ext import commands
-import platform
 import math
 
 
@@ -10,7 +9,7 @@ class Math(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    
+    # division command
     @commands.command(brief = 'Divides two given numbers', description = 'Input: ')
     async def div(self, ctx, num1, num2):
         try:
@@ -40,6 +39,7 @@ class Math(commands.Cog):
         if isinstance(error, commands.MissingRequiredArgument):
             await ctx.send('It needs two values')
     
+    # addition command
     @commands.command(brief = 'Adds two given numbers', description = 'Input: ')
     async def add(self, ctx, num1, num2):
         try: 
@@ -60,6 +60,7 @@ class Math(commands.Cog):
         
         await ctx.send(embed=ans_em)
 
+    # subtraction command
     @commands.command(brief = 'Subtracts two given numbers', description = 'Input: ')
     async def sub(self, ctx, num1, num2):
         try: 
@@ -80,6 +81,7 @@ class Math(commands.Cog):
         
         await ctx.send(embed=ans_em)
 
+    # multiplication command
     @commands.command(brief = 'Multiplies two given numbers', description = 'Input: ')
     async def mul(self, ctx, num1, num2):
         try: 
@@ -100,6 +102,7 @@ class Math(commands.Cog):
         
         await ctx.send(embed=ans_em)
 
+    # sqrt command
     @commands.command(brief = 'Finds the square root of a number', description = 'Input: ')
     async def root(self, ctx, num):
         try: 
@@ -118,6 +121,7 @@ class Math(commands.Cog):
 
         await ctx.send(embed=ans_em)
 
+    # square command
     @commands.command(brief = 'Squares a number', description = 'Input: ')
     async def squ(self, ctx, num):
         try: 
@@ -132,6 +136,7 @@ class Math(commands.Cog):
 
         await ctx.send(embed=ans_em)
 
+    # factorial command
     @commands.command(brief = 'Finds the factorial of a number', description = 'Input: ')
     async def fact(self, ctx, num):
         try: 
@@ -156,6 +161,7 @@ class Math(commands.Cog):
 
         await ctx.send(embed=ans_em)
 
+    # exponent command
     @commands.command(brief = 'Exponentiates a number', description = 'Input: ')
     async def expo(self, ctx, num1, num2): 
         try:
@@ -186,4 +192,3 @@ class Math(commands.Cog):
 
 def setup(bot):
     bot.add_cog(Math(bot))
-    
