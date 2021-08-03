@@ -32,6 +32,10 @@ class Math(commands.Cog):
 
         ans_em = discord.Embed(title = 'Division', description = f'Question: {num1} / {num2}\n\nAnswer: {answer}', colour = discord.Colour.from_rgb(252, 0, 252))
     
+        if len(ans_em.description) > 4096:
+            await ctx.send("Sorry, answer length exceeds maximum embed description length of 4096 characters")
+            return
+
         await ctx.send(embed=ans_em)
 
     @div.error
@@ -57,7 +61,7 @@ class Math(commands.Cog):
         answer = num1 + num2
 
         ans_em = discord.Embed(title='Addition', description = f'Question: {num1} + {num2}\n\nAnswer: {answer}', colour = discord.Colour.from_rgb(252, 252, 0))
-        
+
         await ctx.send(embed=ans_em)
 
     # subtraction command
@@ -78,7 +82,7 @@ class Math(commands.Cog):
         answer = num1 - num2
 
         ans_em = discord.Embed(title='Subtraction', description = f'Question: {num1} - {num2}\n\nAnswer: {answer}', colour = discord.Colour.from_rgb(0, 252, 252))
-        
+
         await ctx.send(embed=ans_em)
 
     # multiplication command
@@ -99,7 +103,7 @@ class Math(commands.Cog):
         answer = num1 * num2
 
         ans_em = discord.Embed(title='Multiplication', description = f'Question: {num1} x {num2}\n\nAnswer: {answer}', colour = discord.Colour.from_rgb(60, 220, 28))
-        
+
         await ctx.send(embed=ans_em)
 
     # sqrt command
@@ -119,6 +123,10 @@ class Math(commands.Cog):
 
         ans_em = discord.Embed(title='Square Root', description = f'Question: sqrt({num})\n\nAnswer: {answer}', colour = discord.Colour.from_rgb(255, 149, 9))
 
+        if len(ans_em.description) > 4096:
+            await ctx.send("Sorry, answer length exceeds maximum embed description length of 4096 characters")
+            return
+
         await ctx.send(embed=ans_em)
 
     # square command
@@ -133,6 +141,10 @@ class Math(commands.Cog):
         answer = num * num
 
         ans_em = discord.Embed(title='Square', description = f'Question: {num}^2\n\nAnswer: {answer}', colour = discord.Colour.from_rgb(153, 0, 76))
+
+        if len(ans_em.description) > 4096:
+            await ctx.send("Sorry, answer length exceeds maximum embed description length of 4096 characters")
+            return
 
         await ctx.send(embed=ans_em)
 
@@ -158,6 +170,10 @@ class Math(commands.Cog):
         answer = math.factorial(num)
 
         ans_em = discord.Embed(title='Factorial', description = f'Question: {num}!\n\nAnswer: {answer}', colour = discord.Colour.from_rgb(252, 252, 252))
+
+        if len(ans_em.description) > 4096:
+            await ctx.send("Sorry, answer length exceeds maximum embed description length of 4096 characters")
+            return
 
         await ctx.send(embed=ans_em)
 
@@ -185,6 +201,10 @@ class Math(commands.Cog):
         answer = pow(num1, num2)
 
         ans_em = discord.Embed(title='Exponent', description = f'Question: {num1}^{num2}\n\nAnswer: {answer}', colour = discord.Colour.from_rgb(100, 100, 100))
+
+        if len(ans_em.description) > 4096:
+            await ctx.send("Sorry, answer length exceeds maximum embed description length of 4096 characters")
+            return
 
         await ctx.send(embed=ans_em)
 
