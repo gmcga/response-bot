@@ -11,16 +11,19 @@ from pathlib import Path
 cwd = Path(__file__).parents[0]
 cwd = str(cwd)
 print(f"{cwd}\n-_-")
+
 # cogs used
 initial_extensions = [
                     'cogs.Math', 
                     'cogs.Misc'
                      ]
 
-bot = commands.Bot(command_prefix='!', case_insensitive=True, activity = discord.Game(name = "!help for commands list!", owner_id=282914357048770561))
 load_dotenv()
-TOKEN = os.getenv("TOKEN")
-logging.basicConfig(level=logging.INFO)
+TOKEN = os.getenv("TOKEN")  
+OWNER = os.getenv("OWNER")
+logging.basicConfig(level=logging.INFO)                   
+
+bot = commands.Bot(command_prefix='!', case_insensitive=True, activity = discord.Game(name = "!help for commands list!", owner_id=OWNER))
 
 bot.blacklisted_users = []
 
