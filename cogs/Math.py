@@ -2,7 +2,7 @@
 import discord
 from discord.ext import commands
 import math
-
+from decimal import *
 
 
 class Math(commands.Cog):
@@ -13,15 +13,15 @@ class Math(commands.Cog):
     @commands.command(brief = 'Divides two given numbers', description = 'Input: ')
     async def div(self, ctx, num1, num2):
         try:
-            num1 = float(num1)
+            num1 = Decimal(num1)
         except:
-            await ctx.send(f"Can't convert to float: '{num1}'")
+            await ctx.send(f"Can't convert to decimal: '{num1}'")
             return
 
         try:
-            num2 = float(num2)
+            num2 = Decimal(num2)
         except:
-            await ctx.send(f"Can't convert to float: '{num2}'")
+            await ctx.send(f"Can't convert to decimal: '{num2}'")
             return
         
         if num2 == 0:
@@ -43,15 +43,15 @@ class Math(commands.Cog):
     @commands.command(brief = 'Adds two given numbers', description = 'Input: ')
     async def add(self, ctx, num1, num2):
         try: 
-            num1 = float(num1)
+            num1 = Decimal(num1)
         except:
-            await ctx.send(f"Can't convert to float: '{num1}'")    
+            await ctx.send(f"Can't convert to decimal: '{num1}'")    
             return
         
         try: 
-            num2 = float(num2)
+            num2 = Decimal(num2)
         except:
-            await ctx.send(f"Can't convert to float: '{num2}'")    
+            await ctx.send(f"Can't convert to decimal: '{num2}'")    
             return
         
         answer = num1 + num2
@@ -64,15 +64,15 @@ class Math(commands.Cog):
     @commands.command(brief = 'Subtracts two given numbers', description = 'Input: ')
     async def sub(self, ctx, num1, num2):
         try: 
-            num1 = float(num1)
+            num1 = Decimal(num1)
         except:
-            await ctx.send(f"Can't convert to float: '{num1}'")    
+            await ctx.send(f"Can't convert to decimal: '{num1}'")    
             return
         
         try: 
-            num2 = float(num2)
+            num2 = Decimal(num2)
         except:
-            await ctx.send(f"Can't convert to float: '{num2}'")    
+            await ctx.send(f"Can't convert to decimal: '{num2}'")    
             return
         
         answer = num1 - num2
@@ -85,15 +85,15 @@ class Math(commands.Cog):
     @commands.command(brief = 'Multiplies two given numbers', description = 'Input: ')
     async def mul(self, ctx, num1, num2):
         try: 
-            num1 = float(num1)
+            num1 = Decimal(num1)
         except:
-            await ctx.send(f"Can't convert to float: '{num1}'")    
+            await ctx.send(f"Can't convert to decimal: '{num1}'")    
             return
         
         try: 
-            num2 = float(num2)
+            num2 = Decimal(num2)
         except:
-            await ctx.send(f"Can't convert to float: '{num2}'")    
+            await ctx.send(f"Can't convert to decimal: '{num2}'")    
             return
         
         answer = num1 * num2
@@ -106,9 +106,9 @@ class Math(commands.Cog):
     @commands.command(brief = 'Finds the square root of a number', description = 'Input: ')
     async def root(self, ctx, num):
         try: 
-            num = float(num)
+            num = Decimal(num)
         except: 
-            await ctx.send(f"Can't convert to float: '{num}'")
+            await ctx.send(f"Can't convert to decimal: '{num}'")
             return
         
         if num < 0: 
@@ -125,9 +125,9 @@ class Math(commands.Cog):
     @commands.command(brief = 'Squares a number', description = 'Input: ')
     async def squ(self, ctx, num):
         try: 
-            num = float(num)
+            num = Decimal(num)
         except: 
-            await ctx.send(f"Can't convert to float: '{num}'")
+            await ctx.send(f"Can't convert to decimal: '{num}'")
             return
 
         answer = num * num
@@ -165,15 +165,15 @@ class Math(commands.Cog):
     @commands.command(brief = 'Exponentiates a number', description = 'Input: ')
     async def expo(self, ctx, num1, num2): 
         try:
-            num1 = float(num1)
+            num1 = Decimal(num1)
         except: 
-            await ctx.send(f"Can't convert to float: '{num1}'")    
+            await ctx.send(f"Can't convert to decimal: '{num1}'")    
             return
 
         try:
-            num2 = float(num2)
+            num2 = Decimal(num2)
         except: 
-            await ctx.send(f"Can't convert to float: '{num2}'")    
+            await ctx.send(f"Can't convert to decimal: '{num2}'")    
             return 
 
         try: 
