@@ -1,6 +1,6 @@
 # response-bot
 
-Multipurpose Discord Bot. 
+Multipurpose Discord Bot. Made using Python and the discord.py library.
 
 Responds to commands sent in chat by users. Current functionality:
 
